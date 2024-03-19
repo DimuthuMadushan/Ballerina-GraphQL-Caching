@@ -8,10 +8,7 @@ import ballerina/log;
         maxSize: 30,
         maxAge: 120
     },
-    maxQueryDepth: 20,
-    graphiql: {
-        enabled: true
-    }
+    maxQueryDepth: 20
 }
 service /sm_backend on new graphql:Listener(9000) {
     resource function get user(@graphql:ID int id) returns User? {
