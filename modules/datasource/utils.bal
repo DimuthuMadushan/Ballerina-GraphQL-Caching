@@ -1,17 +1,13 @@
 public isolated function getComments(CommentFilterRecord filter) returns CommentRecord[] {
     lock {
         CommentRecord[] comments = [];
-        if filter.authorId is int && filter.postId is int {
+        if filter.authorId is int {
             comments = from CommentRecord comment in commentTable
                 where comment.authorId == filter.authorId && comment.postId == filter.postId
                 select comment;
-        } else if filter.authorId is int {
+        } else {
             comments = from CommentRecord comment in commentTable
-                where comment.authorId == filter.authorId
-                select comment;
-        } else if filter.postId is int {
-            comments = from CommentRecord comment in commentTable
-                where comment.authorId == filter.postId
+                where comment.postId == filter.postId
                 select comment;
         }
         return comments.cloneReadOnly();

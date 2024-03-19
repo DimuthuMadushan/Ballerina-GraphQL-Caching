@@ -20,7 +20,7 @@ public type CommentRecord readonly & record {|
 
 public type CommentFilterRecord readonly & record {|
     int authorId?;
-    int postId?;
+    int postId;
 |};
 
 public type CommentType readonly & record {|

@@ -41,7 +41,7 @@ public distinct isolated service class Post {
             string content;
             int authorId;
             int postId;
-        |}[] comments = ds:getComments({...filter});
+        |}[] comments = ds:getComments({postId: self.post.id, ...filter});
         return from var comment in comments
             select {
                 id: comment.id,
@@ -76,7 +76,6 @@ public distinct isolated service class User {
 
 public type CommentFilter record {|
     int authorId?;
-    int postId?;
 |};
 
 public type Comment record {|
